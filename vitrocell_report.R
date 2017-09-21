@@ -1,3 +1,11 @@
+#' ---
+#' title: vitrocell Report from R script using Markdown
+#' author: MD
+#' ---
+#'
+
+#+ warning=FALSE, message=FALSE, include = FALSE
+
 ## goal: geneate reproducible reports from the logfiles of Vitrocell ALI exposure systems
 setwd("D:/GoogleDrive/KIT work google drive/R scripts/Vitrocell ali report")
 
@@ -6,7 +14,6 @@ setwd("D:/GoogleDrive/KIT work google drive/R scripts/Vitrocell ali report")
 library(dplyr)
 library(ggplot2)
 library(reshape2)
-
 
 log <- read.delim(file = "exampleLog.csv", sep = ";", header = T, as.is = T, skip = 3)
 
@@ -31,10 +38,10 @@ round((difftime(log$time[length(log$time)], log$time[1], units = "mins"))[[1]])
 
 source("log_structure.R") # creates a list with log infos, ids units, etc
 
-# todo create table to lookup for units, baselabel (= massflow, humidity...etc) 
+# todo create table to lookup for units, baselabel (= massflow, humidity...etc)
 # based on class for clean plot labels
 
-  
+
 source("plot_log.R") # reads in the function to create the plots
 
 
@@ -42,7 +49,14 @@ plot_id <- log_structure$id[11]
 
 plot_ali_log(plot_id)
 
-pdf(file = "pdf_out.pdf", onefile = TRUE)
+#pdf(file = "pdf_out.pdf", onefile = TRUE)
 # look into "multiplot" http://www.cookbook-r.com/Graphs/Multiple_graphs_on_one_page_(ggplot2)/
+
+#+ warning=FALSE, message=FALSE, include = TRUE, echo = FALSE, fig.width=12, fig.height=4, dpi=75
+
 lapply(X = log_structure$id, FUN = plot_ali_log)
-dev.off()
+
+#+ warning=FALSE, message=FALSE, include = FALSE
+
+#dev.off()
+
