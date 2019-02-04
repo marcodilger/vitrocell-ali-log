@@ -1,6 +1,4 @@
 ## goal: geneate reproducible reports from the logfiles of Vitrocell ALI exposure systems
-setwd("D:/GoogleDrive/KIT work google drive/R scripts/Vitrocell ali report")
-
 
 
 library(dplyr)
